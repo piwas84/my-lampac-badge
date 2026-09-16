@@ -1,5 +1,5 @@
 // ================================================
-// Lampac Badges Filter Plugin - Lampa Client
+// Lampac Badges - Full Menu Plugin for Lampa Client
 // ================================================
 
 (function () {
@@ -69,44 +69,75 @@
     // Основна функція плагіна
     // ================================================
     function init() {
-        // Додаємо пункт в налаштуваннях
-        window.lampaSettings.addItem('badges_filters', {
+        // Додаємо головний пункт меню
+        window.lampaSettings.addItem('badges_menu', {
             name: 'Filters Badges',
             icon: '🎭',
             component: 'settings',
-            template: 'switch',
-            value: true
+            template: 'component',
+            component: 'badges-menu'
         });
 
-        // Обробка включення/виключення
-        window.lampaSettings.on('badges_filters', function (state) {
-            if (state) {
-                // Вмикаємо фільтри
+        // Реєструємо кастомний компонент меню
+        window.lampaSettings.addComponent('badges-menu', {
+            template: 'component',
+            render: function (component, data) {
+                const container = document.createElement('div');
+                container.className = 'settings-menu';
+
                 BADGES.forEach(badge => {
-                    if (!window.lampaFilters.get(badge.id)) {
-                        window.lampaFilters.add(badge.id, {
-                            name: badge.name,
-                            color: badge.color,
-                            borderColor: badge.color,
-                            groupId: badge.groupId,
-                            pattern: badge.pattern,
-                            image: badge.image || null,
-                            type: 'filter'
-                        });
-                    }
+                    const badgeElement = document.createElement('div');
+                    badgeElement.className = 'setting-item';
+
+                    const icon = document.createElement('img');
+                    icon.src = badge.image || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#3eac9a" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/><path fill="#3eac9a" d="M12 6v6l4 4 1.4-1.4L13 10V6z"/></svg>';
+                    icon.style.width = '24px';
+                    icon.style.marginRight = '12px';
+
+                    const name = document.createElement('span');
+                    name.textContent = badge.name;
+                    name.style.flex = '1';
+                    name.style.color = '#fff';
+
+                    const toggle = document.createElement('input');
+                    toggle.type = 'checkbox';
+                    toggle.checked = !!window.lampaFilters.get(badge.id);
+                    toggle.style.width = '24px';
+                    toggle.style.height = '24px';
+
+                    toggle.addEventListener('change', () => {
+                        if (toggle.checked) {
+                            if (!window.lampaFilters.get(badge.id)) {
+                                window.lampaFilters.add(badge.id, {
+                                    name: badge.name,
+                                    color: badge.color,
+                                    borderColor: badge.color,
+                                    groupId: badge.groupId,
+                                    pattern: badge.pattern,
+                                    image: badge.image || null,
+                                    type: 'filter'
+                                });
+                            }
+                        } else {
+                            if (window.lampaFilters.get(badge.id)) {
+                                window.lampaFilters.remove(badge.id);
+                            }
+                        }
+                    });
+
+                    badgeElement.appendChild(icon);
+                    badgeElement.appendChild(name);
+                    badgeElement.appendChild(toggle);
+
+                    container.appendChild(badgeElement);
                 });
-            } else {
-                // Вимикаємо фільтри
-                BADGES.forEach(badge => {
-                    if (window.lampaFilters.get(badge.id)) {
-                        window.lampaFilters.remove(badge.id);
-                    }
-                });
+
+                return container;
             }
         });
 
         // Автоматичне додавання при запуску
-        if (window.lampaSettings.get('badges_filters')) {
+        if (window.lampaSettings.get('badges_menu')) {
             BADGES.forEach(badge => {
                 if (!window.lampaFilters.get(badge.id)) {
                     window.lampaFilters.add(badge.id, {
