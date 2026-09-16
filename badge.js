@@ -1,10 +1,11 @@
 // ================================================
-// Lampac Badges - Full Menu Plugin for Lampa Client
+// Lampac Badges Plugin for Lampa Client
 // ================================================
 
 (function () {
     'use strict';
 
+    // === Всі бейджі ===
     const BADGES = [
         { name: '🇬🇧', color: '#3eac9a', groupId: 'gl', id: 'l-en', pattern: "(?i)(?<![^\\s\\[(_\\-.,])(english|eng)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)" },
         { name: '🇪🇸', color: '#3eac9a', groupId: 'gl', id: 'l-es', pattern: "(?i)(?<![^\\s\\[(_\\-.,])(spanish|spa|esp|latino|lat)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)" },
@@ -65,45 +66,41 @@
         { name: '5.1 Audio', color: '#00000000', groupId: 'audio-channels', id: '51-audio', pattern: "(?i)\\b(5\\.1|5-1|6ch|6\\s*channel)\\b", image: "https://raw.githubusercontent.com/leonevz/Elite-Badges/main/Badges/5_1_audio.png" }
     ];
 
-    // ================================================
-    // Основна функція плагіна
-    // ================================================
     function init() {
-        // Додаємо головний пункт меню
-        window.lampaSettings.addItem('badges_menu', {
+        // === Головний пункт меню ===
+        window.lampaSettings.addItem('badges_filters', {
             name: 'Filters Badges',
             icon: '🎭',
             component: 'settings',
-            template: 'component',
-            component: 'badges-menu'
+            template: 'switch'
         });
 
-        // Реєструємо кастомний компонент меню
-        window.lampaSettings.addComponent('badges-menu', {
+        // === Компонент меню з чекбоксами ===
+        window.lampaSettings.addComponent('badges-list', {
             template: 'component',
             render: function (component, data) {
                 const container = document.createElement('div');
-                container.className = 'settings-menu';
+                container.style.padding = '15px';
+                container.style.maxHeight = '500px';
+                container.style.overflowY = 'auto';
 
                 BADGES.forEach(badge => {
-                    const badgeElement = document.createElement('div');
-                    badgeElement.className = 'setting-item';
+                    const item = document.createElement('div');
+                    item.style.display = 'flex';
+                    item.style.alignItems = 'center';
+                    item.style.padding = '8px 0';
+                    item.style.borderBottom = '1px solid #333';
 
-                    const icon = document.createElement('img');
-                    icon.src = badge.image || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#3eac9a" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/><path fill="#3eac9a" d="M12 6v6l4 4 1.4-1.4L13 10V6z"/></svg>';
-                    icon.style.width = '24px';
-                    icon.style.marginRight = '12px';
-
-                    const name = document.createElement('span');
-                    name.textContent = badge.name;
-                    name.style.flex = '1';
-                    name.style.color = '#fff';
+                    const label = document.createElement('div');
+                    label.style.flex = '1';
+                    label.style.fontSize = '16px';
+                    label.textContent = badge.name;
 
                     const toggle = document.createElement('input');
                     toggle.type = 'checkbox';
                     toggle.checked = !!window.lampaFilters.get(badge.id);
-                    toggle.style.width = '24px';
-                    toggle.style.height = '24px';
+                    toggle.style.transform = 'scale(1.2)';
+                    toggle.style.marginLeft = '15px';
 
                     toggle.addEventListener('change', () => {
                         if (toggle.checked) {
@@ -114,7 +111,7 @@
                                     borderColor: badge.color,
                                     groupId: badge.groupId,
                                     pattern: badge.pattern,
-                                    image: badge.image || null,
+                                    image: badge.image,
                                     type: 'filter'
                                 });
                             }
@@ -125,19 +122,42 @@
                         }
                     });
 
-                    badgeElement.appendChild(icon);
-                    badgeElement.appendChild(name);
-                    badgeElement.appendChild(toggle);
-
-                    container.appendChild(badgeElement);
+                    item.appendChild(label);
+                    item.appendChild(toggle);
+                    container.appendChild(item);
                 });
 
                 return container;
             }
         });
 
+        // === Обробка перемикача ===
+        window.lampaSettings.on('badges_filters', function (state) {
+            if (state) {
+                BADGES.forEach(badge => {
+                    if (!window.lampaFilters.get(badge.id)) {
+                        window.lampaFilters.add(badge.id, {
+                            name: badge.name,
+                            color: badge.color,
+                            borderColor: badge.color,
+                            groupId: badge.groupId,
+                            pattern: badge.pattern,
+                            image: badge.image,
+                            type: 'filter'
+                        });
+                    }
+                });
+            } else {
+                BADGES.forEach(badge => {
+                    if (window.lampaFilters.get(badge.id)) {
+                        window.lampaFilters.remove(badge.id);
+                    }
+                });
+            }
+        });
+
         // Автоматичне додавання при запуску
-        if (window.lampaSettings.get('badges_menu')) {
+        if (window.lampaSettings.get('badges_filters')) {
             BADGES.forEach(badge => {
                 if (!window.lampaFilters.get(badge.id)) {
                     window.lampaFilters.add(badge.id, {
@@ -146,7 +166,7 @@
                         borderColor: badge.color,
                         groupId: badge.groupId,
                         pattern: badge.pattern,
-                        image: badge.image || null,
+                        image: badge.image,
                         type: 'filter'
                     });
                 }
@@ -154,7 +174,6 @@
         }
     }
 
-    // Запуск плагіна
     if (typeof window.lampaSettings !== 'undefined') {
         init();
     }
