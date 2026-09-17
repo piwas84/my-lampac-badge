@@ -2,25 +2,25 @@
     const BADGES = [
         {name:"🇬🇧",color:"#3eac9a",id:"l-en",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(english|eng)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
         {name:"🇪🇸",color:"#3eac9a",id:"l-es",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(spanish|spa|esp|latino|lat)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇫🇷",color:"#3eac9a",id:"l-fr",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(french|fra|fr|vf|vff|vfi|vf2|vfq|truefrench)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇩🇪",color:"#3eac9a",id:"l-de",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(deu(?:tsch)?(?:land)?|ger(?:man)?|german)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇮🇹",color:"#3eac9a",id:"l-it",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(italian|ita)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇧🇷",color:"#3eac9a",id:"l-pt-br",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(portuguese[ .\\-_]?brazil|pt[ .\\-_]?br|brazilian)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇵🇹",color:"#3eac9a",id:"l-pt-pt",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(portuguese(?!(?:[ .\\-_]?brazil))|portuguese[ .\\-_]?(?:portugal|europe(?:an)?)|pt[ .\\-_]?pt)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇹🇷",color:"#3eac9a",id:"l-tr",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(turkish|tur)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇵🇱",color:"#3eac9a",id:"l-pl",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(polish|pol)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇺🇦",color:"#3eac9a",id:"l-uk",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(ukrainian|ukr)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇮🇩",color:"#3eac9a",id:"l-id",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(indonesian|ind)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇹🇭",color:"#3eac9a",id:"l-th",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(thai|tha)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇻🇳",color:"#3eac9a",id:"l-vi",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(vietnamese|vie)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
-        {name:"🇯🇵",color:"#3eac9a",id:"l-ja",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(japanese|jap|jpn)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[぀-ゟ゠-ヿ]{3,}"},
-        {name:"🇰🇷",color:"#3eac9a",id:"l-ko",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(korean|kor)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[가-힯]{3,}"},
-        {name:"🇨🇳",color:"#3eac9a",id:"l-zh",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(chinese|chi|zho|mandarin|cantonese)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[一-鿿]{3,}"},
-        {name:"🇮🇳",color:"#3eac9a",id:"l-hi",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(hindi|hin)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[ऀ-ॿ]{3,}"},
-        {name:"🇸🇦",color:"#3eac9a",id:"l-ar",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(arabic|ara)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[؀-ۿ]{3,}"},
-        {name:"🇷🇺",color:"#3eac9a",id:"l-ru",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(russian|rus)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[Ѐ-ӿ]{3,}"},
-        {name:"🇬🇷",color:"#3eac9a",id:"l-el",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(greek|ellinika|hellenic|grec|ell|gre)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[\\u0370-\\u03FF\\u1F00-\\u1FFF]{3,}"},
-        {name:"🌐",color:"#3eac9a",id:"l-mu",pattern:"(?i)(?<![^\\s\\[(_\\-.,])(multi)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|\( )|(?<![^\\s\\[(_\\-.,])(dual[ .\\-_]?(?:audio|lang(?:uage)?|flac|ac3|aac2?))(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]| \))"},
+        {name:"🇫🇷",color:"#3eac9a",id:"l-fr","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(french|fra|fr|vf|vff|vfi|vf2|vfq|truefrench)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇩🇪",color:"#3eac9a",id:"l-de","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(deu(?:tsch)?(?:land)?|ger(?:man)?|german)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇮🇹",color:"#3eac9a",id:"l-it","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(italian|ita)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇧🇷",color:"#3eac9a",id:"l-pt-br","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(portuguese[ .\\-_]?brazil|pt[ .\\-_]?br|brazilian)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇵🇹",color:"#3eac9a",id:"l-pt-pt","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(portuguese(?!(?:[ .\\-_]?brazil))|portuguese[ .\\-_]?(?:portugal|europe(?:an)?)|pt[ .\\-_]?pt)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇹🇷",color:"#3eac9a",id:"l-tr","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(turkish|tur)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇵🇱",color:"#3eac9a",id:"l-pl","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(polish|pol)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇺🇦",color:"#3eac9a",id:"l-uk","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(ukrainian|ukr)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇮🇩",color:"#3eac9a",id:"l-id","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(indonesian|ind)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇹🇭",color:"#3eac9a",id:"l-th","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(thai|tha)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇻🇳",color:"#3eac9a",id:"l-vi","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(vietnamese|vie)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)"},
+        {name:"🇯🇵",color:"#3eac9a",id:"l-ja","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(japanese|jap|jpn)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[぀-ゟ゠-ヿ]{3,}"},
+        {name:"🇰🇷",color:"#3eac9a",id:"l-ko","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(korean|kor)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[가-힯]{3,}"},
+        {name:"🇨🇳",color:"#3eac9a",id:"l-zh","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(chinese|chi|zho|mandarin|cantonese)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[一-鿿]{3,}"},
+        {name:"🇮🇳",color:"#3eac9a",id:"l-hi","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(hindi|hin)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[ऀ-ॿ]{3,}"},
+        {name:"🇸🇦",color:"#3eac9a",id:"l-ar","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(arabic|ara)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[؀-ۿ]{3,}"},
+        {name:"🇷🇺",color:"#3eac9a",id:"l-ru","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(russian|rus)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[Ѐ-ӿ]{3,}"},
+        {name:"🇬🇷",color:"#3eac9a",id:"l-el","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(greek|ellinika|hellenic|grec|ell|gre)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|$)|[\\u0370-\\u03FF\\u1F00-\\u1FFF]{3,}"},
+        {name:"🌐",color:"#3eac9a",id:"l-mu","pattern":"(?i)(?<![^\\s\\[(_\\-.,])(multi)(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]|\( )|(?<![^\\s\\[(_\\-.,])(dual[ .\\-_]?(?:audio|lang(?:uage)?|flac|ac3|aac2?))(?![ .\\-_]?sub(title)?s?)(?=[\\s\\)\\]_.\\-,]| \))"},
 
         {name:"REMUX",color:"#00000000",id:"remux",pattern:"(?i)\\bremux\\b",image:"https://raw.githubusercontent.com/leonevz/Elite-Badges/main/Badges/remux.png"},
         {name:"Blu-ray Disc",color:"#00000000",id:"blu-ray-disc",pattern:"(?i)\\b(blu[\\s._-]?ray|bluray|bdrip|bdremux)\\b",image:"https://raw.githubusercontent.com/leonevz/Elite-Badges/main/Badges/blu_ray_disc.png"},
@@ -60,31 +60,38 @@
     ];
 
     function init(){
-        window.lampaSettings.addItem('badges_filters', {name:'Filters Badges', icon:'🎭', component:'settings', template:'switch'});
+        window.lampaSettings.addItem('badges_filters', {
+            name: 'Filters Badges',
+            icon: '🎭',
+            component: 'settings',
+            template: 'switch'
+        });
+
         window.lampaSettings.addComponent('badges-list', {
-            template:'component',
-            render:function(c,d){
-                const div=document.createElement('div');
-                div.style.padding='12px';
-                div.style.maxHeight='480px';
-                div.style.overflowY='auto';
-                div.style.background='#111';
-                BADGES.forEach(b=>{
-                    const row=document.createElement('div');
-                    row.style.display='flex';
-                    row.style.alignItems='center';
-                    row.style.marginBottom='8px';
-                    const lbl=document.createElement('div');
-                    lbl.style.flex='1';
-                    lbl.style.fontSize='17px';
-                    lbl.textContent=b.name;
-                    const chk=document.createElement('input');
-                    chk.type='checkbox';
-                    chk.checked=!!window.lampaFilters.get(b.id);
-                    chk.style.transform='scale(1.3)';
-                    chk.addEventListener('change',()=>{
+            template: 'component',
+            render: function(c, d){
+                const div = document.createElement('div');
+                div.style.padding = '12px';
+                div.style.maxHeight = '500px';
+                div.style.overflowY = 'auto';
+                div.style.background = '#111';
+
+                BADGES.forEach(b => {
+                    const row = document.createElement('div');
+                    row.style.display = 'flex';
+                    row.style.alignItems = 'center';
+                    row.style.marginBottom = '8px';
+                    const lbl = document.createElement('div');
+                    lbl.style.flex = '1';
+                    lbl.style.fontSize = '17px';
+                    lbl.textContent = b.name;
+                    const chk = document.createElement('input');
+                    chk.type = 'checkbox';
+                    chk.checked = !!window.lampaFilters.get(b.id);
+                    chk.style.transform = 'scale(1.3)';
+                    chk.addEventListener('change', () => {
                         if(chk.checked){
-                            if(!window.lampaFilters.get(b.id)) window.lampaFilters.add(b.id,{name:b.name,color:b.color,borderColor:b.color,groupId:'gl',pattern:b.pattern,type:'filter',image:b.image});
+                            if(!window.lampaFilters.get(b.id)) window.lampaFilters.add(b.id, {name:b.name, color:b.color, borderColor:b.color, groupId:'gl', pattern:b.pattern, type:'filter', image:b.image});
                         }else{
                             if(window.lampaFilters.get(b.id)) window.lampaFilters.remove(b.id);
                         }
@@ -93,14 +100,44 @@
                     row.appendChild(chk);
                     div.appendChild(row);
                 });
-                return div;
+
+                const btn = document.createElement('button');
+                btn.textContent = 'Вставити JSON';
+                btn.style.width = '100%';
+                btn.style.marginTop = '12px';
+                btn.style.padding = '10px';
+                btn.style.background = '#3eac9a';
+                btn.style.color = '#000';
+                btn.style.border = 'none';
+                btn.style.borderRadius = '6px';
+                btn.style.fontWeight = 'bold';
+                btn.addEventListener('click', () => {
+                    const jsonText = prompt('Вставте JSON з бейджами:');
+                    if(jsonText) {
+                        try {
+                            const data = JSON.parse(jsonText);
+                            if(data.badges) window.lampaFilters.load(data.badges);
+                            alert('Бейджі успішно завантажено!');
+                        } catch(e) {
+                            alert('Неправильний JSON');
+                        }
+                    }
+                });
+
+                const mainDiv = document.createElement('div');
+                mainDiv.appendChild(div);
+                mainDiv.appendChild(btn);
+                return mainDiv;
             }
         });
-        window.lampaSettings.on('badges_filters',state=>{
-            if(state) BADGES.forEach(b=>{if(!window.lampaFilters.get(b.id)) window.lampaFilters.add(b.id,{name:b.name,color:b.color,borderColor:b.color,groupId:'gl',pattern:b.pattern,type:'filter',image:b.image});});
-            else BADGES.forEach(b=>{if(window.lampaFilters.get(b.id)) window.lampaFilters.remove(b.id);});
+
+        window.lampaSettings.on('badges_filters', state => {
+            if(state) BADGES.forEach(b => { if(!window.lampaFilters.get(b.id)) window.lampaFilters.add(b.id, {name:b.name, color:b.color, borderColor:b.color, groupId:'gl', pattern:b.pattern, type:'filter', image:b.image}); });
+            else BADGES.forEach(b => { if(window.lampaFilters.get(b.id)) window.lampaFilters.remove(b.id); });
         });
-        if(window.lampaSettings.get('badges_filters')) BADGES.forEach(b=>{if(!window.lampaFilters.get(b.id)) window.lampaFilters.add(b.id,{name:b.name,color:b.color,borderColor:b.color,groupId:'gl',pattern:b.pattern,type:'filter',image:b.image});});
+
+        if(window.lampaSettings.get('badges_filters')) BADGES.forEach(b => { if(!window.lampaFilters.get(b.id)) window.lampaFilters.add(b.id, {name:b.name, color:b.color, borderColor:b.color, groupId:'gl', pattern:b.pattern, type:'filter', image:b.image}); });
     }
-    if(typeof window.lampaSettings!=='undefined') init();
+
+    if(typeof window.lampaSettings !== 'undefined') init();
 })();
